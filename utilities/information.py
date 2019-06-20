@@ -78,3 +78,31 @@ def getAttribMaxInfo(data):
         if val not in counts:
             counts[val] = 0
     return counts
+
+    def getVocabularyMap(linesSplit):
+    valsDistinct = set(map(lambda (value, label): value, linesSplit))
+    valMap = dict()
+    i = 1 ## because bias index is 0
+    for v in valsDistinct:
+        if (v not in valMap.keys()):
+            valMap[v] = i
+        i += 1
+    #print valMap
+    return valMap
+
+def getDistinctLabelMap(linesSplit):
+    labelsDistinct = set(map(lambda (value, label): label, linesSplit))
+    labMap = dict()
+    i = 0
+    for l in labelsDistinct:
+        if (l not in labMap.keys()):
+            labMap[l] = i
+        i += 1
+    #print labMap
+    return labMap
+
+def reverseLabelMap(labelMap):
+    newLabelMap = dict()
+    for key in labelMap:
+        newLabelMap[labelMap[key]] = key
+    return newLabelMap
